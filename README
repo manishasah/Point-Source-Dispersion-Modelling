@@ -1,1 +1,51 @@
 # Point-Source-Dispersion-Modelling
+#The folder consist of  5 files.
+
+1)input.txt: It contains the input datas for calculation. The input datas are separated by comma following csv file format. It only contains 		     one line of input datas and is written in specific order. Any changer in order or increase in lines of data will require further 		     changes in input.py file.The order is as follows:
+
+	Atmos_Stab, Q, x, y, z, ws, wdir, h
+
+	Atmos_Stab: Atmospheric Stability class which ranges from A to F. The class depends upon the wind speed and the solar and other 		    meterological factor. TO avoid the compleities, it takes the class as given input.
+	Q: Emission Rate(ug/sec). The unit of mass can be anything. The unit of concentration at the receptore depends upon its unit.
+	x: Distance of receptor in wind direction in m.
+	y: Distance of receptor in cross wind direction in m.
+	z: Height of receptor in m.
+	ws: Wind Speed in m/sec.
+        wdir: Wind direction (deg/radian). It has not been included in the calculation for now. Depending upon the use, either unit will be ok. 	Stack Height: Height of the source from the ground level + plume rise in m.
+
+2)input.py: It reads the input from the "input.txt" file and makes an object called "data" which contains all the input. The filename is  		    harcoded therefore need to change in order to read other file of different name.
+
+3)Atmos_values.py: It contains the values of a,c,d,f corresponding to the atmospheric stability and distance x in km. The list contains the 			   values in the following format:
+		[ [ [a, c, d, f] for x<=1km , [a, c, d, f] for x > 1 km ],...]. Index from 0 to 5 represents class from A to F.
+
+4)pointSource.py: It calculates the concentration at the receptor. It imports the "data" object and uses the input data for the calculation.
+		  It prints the concentration at the receptor and saves an output file "output.txt" in csvfile format. The output file contains 		  the following in the given order:
+	   x, y, z, concentration.
+
+5)plot.py: This plots 2 contour plot.
+	
+	1)Horizontal Dispersion at given height: It plots the dispersion against different values of x and y at the given z.
+	2)Vertical Dispersion; It plots the dispersion against the different values of x and z at the given y.
+
+Note:
+	To CALCULATE Concentration at a point RUN "point_source.py".
+	To plot the dispersion over the area to the receptor Run "plot.py".
+	To change the input of the file, Edit "input.txt".
+
+################################################################################################################################################
+						Atmospheric Stability Class
+			
+Meteorological conditions that define the Pasquill stability classes
+
+Surface windspeed 	   Daytime incoming solar radiation 	 Nighttime cloud cover 	
+	m/s 		 Strong 	Moderate 	Slight 	 >=1/2low cloud  =< 3/8 cloud 
+	
+	< 2 		   A 	         A – B 	          B 	    E 	           F 	
+       2 – 3 	 	 A – B 	           B 	          C 	    E 	           F 	
+       3 – 5 	 	   B 	         B – C 	          C 	    D 	           E 	
+       5 – 6 	 	   C 	         C – D 	          D 	    D 	           D 	
+        > 6 	 	   C 	           D 	          D 	    D 	           D 	
+
+Note: Class D applies to overcast conditions, at any windspeed day or night. 	
+
+Incoming solar radiation is based on the following: strong (> 700 W m−2), moderate (350-700 W m−2), slight (< 350 W m−2)
