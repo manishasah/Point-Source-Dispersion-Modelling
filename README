@@ -1,5 +1,5 @@
 # Point-Source-Dispersion-Modelling
-#The folder consist of  5 files.
+#The folder consist of  6 files.
 
 1)input.txt: It contains the input datas for calculation. The input datas are separated by comma following csv file format. It only contains 		     one line of input datas and is written in specific order. Any changer in order or increase in lines of data will require further 		     changes in input.py file.The order is as follows:
 
@@ -26,7 +26,8 @@
 	
 	1)Horizontal Dispersion at given height: It plots the dispersion against different values of x and y at the given z.
 	2)Vertical Dispersion; It plots the dispersion against the different values of x and z at the given y.
-
+	
+6)output.txt: It contains the output from the file pointSource.py. It stores receptor position (x,y,z) and concentration at the point. Inorder to change the output file, one need edit in the pointSource.py file.
 Note:
 	To CALCULATE Concentration at a point RUN "point_source.py".
 	To plot the dispersion over the area to the receptor Run "plot.py".
